@@ -116,18 +116,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// ─── Vue.js App for Dynamic Project Filtering ──────────────
-// This creates an interactive project filter if Vue is available
-if (typeof Vue !== 'undefined') {
-    const projectsAppEl = document.getElementById('projectsApp');
-    if (projectsAppEl) {
-        // Vue app can be extended for filtering, search, etc.
-        // Currently the projects are rendered server-side via Jinja2
-        // Vue is available for future interactive enhancements
-    }
-}
-
-
 // ─── Utility: Show Alert ───────────────────────────────────
 function showAlert(message, type = 'info') {
     const container = document.querySelector('.flash-container') || createFlashContainer();
