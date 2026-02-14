@@ -28,12 +28,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ─── Smooth Scrolling for Nav Links ────────────────────
+    // ─── Smooth Scrolling for Same-Page Anchors ────────────────
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            const target = document.querySelector(href);
             if (target) {
+                e.preventDefault();
                 const offset = 80;
                 const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
                 window.scrollTo({ top: targetPosition, behavior: 'smooth' });
@@ -47,30 +49,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-
-    // ─── Active Nav Link on Scroll ─────────────────────────
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-
-    function updateActiveNav() {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 120;
-            if (window.scrollY >= sectionTop) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + current) {
-                link.classList.add('active');
-            }
-        });
-    }
-
-    window.addEventListener('scroll', updateActiveNav);
-    updateActiveNav();
 
     // ─── Skill Progress Bar Animation ──────────────────────
     const progressBars = document.querySelectorAll('.progress-bar[data-target]');

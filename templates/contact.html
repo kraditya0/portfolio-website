@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% set active_page = 'contact' %}
+
+{% block title %}Contact | Aditya{% endblock %}
+
+{% block content %}
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PAGE HEADER                                               -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="page-header d-flex align-items-center">
+    <div class="container text-center py-5">
+        <h6 class="text-primary fw-semibold text-uppercase ls-2" data-aos="fade-up">Get In Touch</h6>
+        <h1 class="display-5 fw-black mb-3" data-aos="fade-up" data-aos-delay="100">
+            Let's <span class="text-primary">Talk</span>
+        </h1>
+        <p class="text-muted mx-auto" data-aos="fade-up" data-aos-delay="200" style="max-width:600px;">
+            Have a project idea or want to collaborate? Drop me a message!
+        </p>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  CONTACT SECTION                                           -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="py-5 section-dark">
+    <div class="container py-5">
+        <div class="row g-5 justify-content-center">
+            <div class="col-lg-5" data-aos="fade-right">
+                <div class="contact-info">
+                    <div class="d-flex gap-3 mb-4 align-items-start">
+                        <div class="contact-icon-box">
+                            <i class="bi bi-envelope-fill text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Email</h6>
+                            <p class="text-muted mb-0">aditya2003iitm@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3 mb-4 align-items-start">
+                        <div class="contact-icon-box">
+                            <i class="bi bi-telephone-fill text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Phone</h6>
+                            <p class="text-muted mb-0">+91 8766382326</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3 mb-4 align-items-start">
+                        <div class="contact-icon-box">
+                            <i class="bi bi-geo-alt-fill text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Location</h6>
+                            <p class="text-muted mb-0">India</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3 mb-4 align-items-start">
+                        <div class="contact-icon-box">
+                            <i class="bi bi-clock-fill text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Availability</h6>
+                            <p class="text-muted mb-0">Mon – Sun, 24x7</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3 mt-4">
+                        <h4 class="fw-bold mb-0">Check my skills here</h4>
+                        <a href="https://github.com/kraditya0" target="_blank"
+                            class="btn btn-outline-primary rounded-circle p-2"><i class="bi bi-github fs-5"></i></a>
+                        <a href="https://linkedin.com/in/aditya-kumar-1a43b91b1" target="_blank"
+                            class="btn btn-outline-primary rounded-circle p-2"><i class="bi bi-linkedin fs-5"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div id="formAlert" class="alert d-none mb-3" role="alert"></div>
+                <form class="contact-form" id="contactForm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label fw-semibold">Your Name</label>
+                        <input type="text" class="form-control form-control-lg bg-dark border-secondary text-light"
+                            id="name" name="name" placeholder="Aditya Kumar" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-semibold">Email Address</label>
+                        <input type="email" class="form-control form-control-lg bg-dark border-secondary text-light"
+                            id="email" name="email" placeholder="aman@example.com" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label fw-semibold">Message</label>
+                        <textarea class="form-control form-control-lg bg-dark border-secondary text-light" id="message"
+                            name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 w-100" id="contactBtn">
+                        <i class="bi bi-send me-2"></i>Send Message
+                    </button>
+                </form>
+                <script>
+                    document.getElementById('contactForm').addEventListener('submit', async function (e) {
+                        e.preventDefault();
+                        const btn = document.getElementById('contactBtn');
+                        const alert = document.getElementById('formAlert');
+                        const form = this;
+
+                        btn.disabled = true;
+                        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
+
+                        try {
+                            const res = await fetch('https://formspree.io/f/xvzbarpy', {
+                                method: 'POST',
+                                body: new FormData(form),
+                                headers: { 'Accept': 'application/json' }
+                            });
+                            if (res.ok) {
+                                alert.className = 'alert alert-success mb-3';
+                                alert.textContent = '✅ Message sent successfully! I\'ll get back to you soon.';
+                                form.reset();
+                            } else {
+                                alert.className = 'alert alert-danger mb-3';
+                                alert.textContent = '❌ Something went wrong. Please try again.';
+                            }
+                        } catch (err) {
+                            alert.className = 'alert alert-danger mb-3';
+                            alert.textContent = '❌ Network error. Please check your connection.';
+                        }
+
+                        btn.disabled = false;
+                        btn.innerHTML = '<i class="bi bi-send me-2"></i>Send Message';
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

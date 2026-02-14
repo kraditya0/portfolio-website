@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% set active_page = 'services' %}
+
+{% block title %}Services | Aditya{% endblock %}
+
+{% block content %}
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PAGE HEADER                                               -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="page-header d-flex align-items-center">
+    <div class="container text-center py-5">
+        <h6 class="text-primary fw-semibold text-uppercase ls-2" data-aos="fade-up">What I Offer</h6>
+        <h1 class="display-5 fw-black mb-3" data-aos="fade-up" data-aos-delay="100">
+            Our <span class="text-primary">Services</span>
+        </h1>
+        <p class="text-muted mx-auto" data-aos="fade-up" data-aos-delay="200" style="max-width:600px;">
+            We provide best and affordable services for Website Development
+        </p>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  SERVICES SECTION                                          -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="py-5 services-section">
+    <div class="container py-5">
+        <div class="row g-5 justify-content-center">
+
+            <!-- ── Basic Website ── -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="0">
+                <div class="service-pkg-card h-100">
+                    <div class="service-pkg-img">
+                        <img src="{{ url_for('static', filename='images/basic-website.jpg') }}" alt="Basic Website">
+                    </div>
+                    <div class="service-pkg-body">
+                        <h3 class="fw-bold mb-3">Basic Website <span class="text-muted">( Rs. 15k – Rs. 20k )</span>
+                        </h3>
+                        <p class="text-muted mb-4">
+                            Perfect for businesses that want customers to call or email directly.
+                            Ideal for generating leads through quick contact.
+                        </p>
+                        <ul class="service-features">
+                            <li>Create up to 5 pages</li>
+                            <li>3 revisions after website live</li>
+                            <li>Free 1st year hosting (worth Rs.2000)</li>
+                            <li>Free SSL certificate</li>
+                            <li><strong>2 professional mailboxes</strong> (free for 1 year)</li>
+                            <li>Mobile responsive design</li>
+                            <li>SEO basic setup</li>
+                            <li>Contact form integration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── E-Commerce Website ── -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
+                <div class="service-pkg-card h-100">
+                    <div class="service-pkg-img">
+                        <img src="{{ url_for('static', filename='images/ecommerce-website.jpg') }}"
+                            alt="E-Commerce Website">
+                    </div>
+                    <div class="service-pkg-body">
+                        <h3 class="fw-bold mb-3">E-Commerce Website <span class="text-muted">( Rs. 35k – Rs. 50k
+                                )</span></h3>
+                        <p class="text-muted mb-4">
+                            Perfect for businesses that want to sell directly from their website.
+                            Ideal for turning visitors into instant buyers.
+                        </p>
+                        <ul class="service-features">
+                            <li>Create up to 20 pages</li>
+                            <li>Create up to 50 listings</li>
+                            <li>6 revisions after website live</li>
+                            <li>Free 1st year hosting (worth Rs.3000)</li>
+                            <li>Free SSL certificate</li>
+                            <li><strong>6 professional mailboxes</strong> (free for 1 year)</li>
+                            <li>Payment gateway integration</li>
+                            <li>Admin dashboard for inventory</li>
+                            <li>Mobile responsive design</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg rounded-pill px-5">
+                <i class="bi bi-send me-2"></i>Get a Quote
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

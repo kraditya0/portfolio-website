@@ -17,18 +17,36 @@ with app.app_context():
     seed()
 
 
-
 # ═══════════════════════════════════════════════════════════
 #  PUBLIC ROUTES
 # ═══════════════════════════════════════════════════════════
 
 @app.route('/')
 def index():
-    projects = get_all_projects()
+    return render_template('index.html')
+
+
+@app.route('/services')
+def services():
     services = get_all_services()
-    skills = get_all_skills()
+    return render_template('services.html', services=services)
+
+
+@app.route('/projects')
+def projects():
+    projects = get_all_projects()
+    return render_template('projects.html', projects=projects)
+
+
+@app.route('/testimonials')
+def testimonials():
     testimonials = get_approved_testimonials()
-    return render_template('index.html', projects=projects, services=services, skills=skills, testimonials=testimonials)
+    return render_template('testimonials.html', testimonials=testimonials)
+
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
 
 
 # ─── API endpoints for Vue.js ────────────────────────────────

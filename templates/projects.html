@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% set active_page = 'projects' %}
+
+{% block title %}Projects | Aditya{% endblock %}
+
+{% block content %}
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PAGE HEADER                                               -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="page-header d-flex align-items-center">
+    <div class="container text-center py-5">
+        <h6 class="text-primary fw-semibold text-uppercase ls-2" data-aos="fade-up">My Work</h6>
+        <h1 class="display-5 fw-black mb-3" data-aos="fade-up" data-aos-delay="100">
+            Recent <span class="text-primary">Projects</span>
+        </h1>
+        <p class="text-muted mx-auto" data-aos="fade-up" data-aos-delay="200" style="max-width:600px;">
+            A showcase of my latest projects demonstrating full-stack expertise.
+        </p>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PROJECTS SECTION                                          -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="py-5 section-dark">
+    <div class="container py-5">
+        <div class="row g-4" id="projectsApp">
+            {% for project in projects %}
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
+                <div class="card project-card h-100 border-0 shadow-sm overflow-hidden">
+                    <div class="project-img-wrapper">
+                        {% if project.image %}
+                        <img src="{{ project.image }}" class="card-img-top" alt="{{ project.title }}">
+                        {% else %}
+                        <div class="project-img-placeholder">
+                            <i class="bi bi-code-square display-3 text-primary"></i>
+                        </div>
+                        {% endif %}
+                        <div class="project-overlay">
+                            <div class="d-flex gap-2">
+                                {% if project.github_link %}
+                                <!-- <a href="{{ project.github_link }}" target="_blank"
+                                   class="btn btn-sm btn-light rounded-pill">
+                                    <i class="bi bi-github me-1"></i>Code
+                                </a> -->
+                                {% endif %}
+                                {% if project.live_link %}
+                                <!-- <a href="{{ project.live_link }}" target="_blank"
+                                   class="btn btn-sm btn-primary rounded-pill">
+                                    <i class="bi bi-box-arrow-up-right me-1"></i>Live
+                                </a> -->
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-4">
+                        <h5 class="card-title fw-bold">{{ project.title }}</h5>
+                        <p class="card-text text-muted small">{{ project.description[:120] }}{% if
+                            project.description|length > 120 %}...{% endif %}</p>
+                        {% if project.tech_stack %}
+                        <div class="d-flex flex-wrap gap-1 mt-3">
+                            {% for tech in project.tech_stack.split(',') %}
+                            <span class="badge bg-primary bg-opacity-10 text-primary small">{{ tech.strip() }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% if not projects %}
+            <div class="col-12 text-center text-muted">
+                <p>Projects coming soon. Check back later!</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

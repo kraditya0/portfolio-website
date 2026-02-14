@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% set active_page = 'testimonials' %}
+
+{% block title %}Testimonials | Aditya{% endblock %}
+
+{% block content %}
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PAGE HEADER                                               -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="page-header d-flex align-items-center">
+    <div class="container text-center py-5">
+        <h6 class="text-primary fw-semibold text-uppercase ls-2" data-aos="fade-up">Testimonials</h6>
+        <h1 class="display-5 fw-black mb-3" data-aos="fade-up" data-aos-delay="100">
+            What <span class="text-primary">Clients Say</span>
+        </h1>
+        <p class="text-muted mx-auto" data-aos="fade-up" data-aos-delay="200" style="max-width:600px;">
+            Real feedback from clients who trusted me with their projects.
+        </p>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  TESTIMONIALS SECTION                                      -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="py-5 section-dark">
+    <div class="container py-5">
+        <div class="row g-4 justify-content-center">
+            {% for t in testimonials %}
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
+                <div class="testimonial-card p-4 h-100">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="testimonial-avatar">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0">{{ t.name }}</h6>
+                            <small class="text-muted">{{ t.role or 'Client' }}</small>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars mb-3">
+                        {% for i in range(t.rating) %}
+                        <i class="bi bi-star-fill text-warning"></i>
+                        {% endfor %}
+                        {% for i in range(5 - t.rating) %}
+                        <i class="bi bi-star text-warning"></i>
+                        {% endfor %}
+                    </div>
+                    <p class="text-muted mb-0">
+                        <i class="bi bi-quote text-primary fs-4 me-1"></i>
+                        {{ t.feedback }}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% if not testimonials %}
+            <div class="col-12 text-center text-muted">
+                <p>No reviews yet. Be the first to share your experience!</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg rounded-pill px-5">
+                <i class="bi bi-send me-2"></i>Start Your Project
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
