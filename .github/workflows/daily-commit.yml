@@ -9,8 +9,9 @@ permissions:
   contents: write
 
 jobs:
-  daily-commit-23f3000360@ds.study.iitm.ac.in:
+  daily_commit:
     runs-on: ubuntu-latest
+    name: "daily-commit-23f3000360@ds.study.iitm.ac.in"
 
     steps:
       - name: Checkout repo
